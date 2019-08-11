@@ -1,0 +1,22 @@
+{
+  "results": [
+    {
+      "poster": 11,
+      "title": "asd",
+      "overview": "asd",
+      "rating": "asd"
+    },
+    {
+      "poster": 12,
+      "title": "qwe",
+      "overview": "qwe",
+      "rating": "qwe"
+    },
+    {
+      "poster": 13,
+      "title": "zxc",
+      "overview": "zxc",
+      "rating": "zxc"
+    }
+  ]
+}
