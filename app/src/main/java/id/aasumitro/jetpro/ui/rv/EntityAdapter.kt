@@ -1,11 +1,10 @@
-package id.aasumitro.jetpro.ui.recycler
+package id.aasumitro.jetpro.ui.rv
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.aasumitro.jetpro.R
 import id.aasumitro.jetpro.data.model.Entity
-import id.aasumitro.jetpro.util.Constants.MOVIE
 
 
 /**
@@ -16,8 +15,7 @@ import id.aasumitro.jetpro.util.Constants.MOVIE
 
 class EntityAdapter (
     private val data: ArrayList<Entity>,
-    private val listener: EntityListener,
-    private val type: String = MOVIE
+    private val listener: EntityListener
 ) : RecyclerView.Adapter<EntityViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -30,7 +28,7 @@ class EntityAdapter (
     }
 
     override fun onBindViewHolder(holder: EntityViewHolder, position: Int) =
-        holder.bind(data[position], listener, type)
+        holder.bind(data[position], listener)
 
     override fun getItemCount(): Int = data.count()
 

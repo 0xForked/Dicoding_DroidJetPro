@@ -1,9 +1,9 @@
-package id.aasumitro.jetpro.ui.main
+package id.aasumitro.jetpro.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.aasumitro.jetpro.data.SourceRepository
+import id.aasumitro.jetpro.data.Repository
 import id.aasumitro.jetpro.data.model.Entity
 import id.aasumitro.jetpro.util.Constants.MOVIE
 import id.aasumitro.jetpro.util.Constants.SHOW
@@ -16,12 +16,14 @@ import id.aasumitro.jetpro.util.Constants.SHOW
 
 class MainViewModel : ViewModel() {
 
-    private lateinit var mRepository: SourceRepository
+    private lateinit var mRepository: Repository
 
     private var mListMovies: MutableLiveData<ArrayList<Entity>>? = null
     private var mListShows: MutableLiveData<ArrayList<Entity>>? = null
 
-    fun inject(repository: SourceRepository) {
+    val mSelectionListener = MutableLiveData<Entity>()
+
+    fun inject(repository: Repository) {
         this.mRepository = repository
     }
 

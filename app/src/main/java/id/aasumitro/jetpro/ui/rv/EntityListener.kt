@@ -1,4 +1,4 @@
-package id.aasumitro.jetpro.ui.recycler
+package id.aasumitro.jetpro.ui.rv
 
 import id.aasumitro.jetpro.data.model.Entity
 

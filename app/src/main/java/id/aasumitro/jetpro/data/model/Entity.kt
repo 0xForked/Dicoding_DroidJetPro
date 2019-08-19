@@ -11,7 +11,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Entity(
-    var poster: Int = 0,
+    var poster: String? = null,
+    var year: Int? = 0,
     var title: String? = null,
     var overview: String? = null,
     var rating: String? = null

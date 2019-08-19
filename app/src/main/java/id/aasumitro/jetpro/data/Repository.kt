@@ -15,7 +15,7 @@ import java.io.InputStreamReader
  * https://aasumitro.id
  */
 
-class SourceRepository(
+class Repository(
     private val context: Context? = null
 ) {
 

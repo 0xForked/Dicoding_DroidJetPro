@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">jetpro</string>
 
+    <string name="text_main_title">DA\'MOVIE</string>
+    <string name="text_detail_title">DA\'MOVIE - Detail</string>
+
     <string name="text_movie">Movies</string>
     <string name="text_show">TV Shows</string>
+    <string name="text_description">Description</string>
+    <string name="text_first_air">First air</string>
+    <string name="text_rate">Rate</string>
+    <string name="text_overview">Overview</string>
 
 </resources>
