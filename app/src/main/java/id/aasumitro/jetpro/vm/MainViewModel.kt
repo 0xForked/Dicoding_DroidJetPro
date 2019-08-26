@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.aasumitro.jetpro.data.Repository
 import id.aasumitro.jetpro.data.model.Entity
-import id.aasumitro.jetpro.util.Constants.MOVIE
-import id.aasumitro.jetpro.util.Constants.SHOW
 
 /**
  * Created by A. A. Sumitro on 8/11/2019
@@ -16,16 +14,12 @@ import id.aasumitro.jetpro.util.Constants.SHOW
 
 class MainViewModel : ViewModel() {
 
-    private lateinit var mRepository: Repository
+    private var mRepository: Repository = Repository()
 
     private var mListMovies: MutableLiveData<ArrayList<Entity>>? = null
     private var mListShows: MutableLiveData<ArrayList<Entity>>? = null
 
     val mSelectionListener = MutableLiveData<Entity>()
-
-    fun inject(repository: Repository) {
-        this.mRepository = repository
-    }
 
     fun movies() : LiveData<ArrayList<Entity>> {
         if (mListMovies == null) {
@@ -44,12 +38,12 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getMovies() {
-        val movies = mRepository.fetchData(MOVIE)
+        val movies = mRepository.getMovies()
         mListMovies?.value = movies as ArrayList<Entity>?
     }
 
     private fun getShows() {
-        val shows = mRepository.fetchData(SHOW)
+        val shows = mRepository.getShows()
         mListShows?.value = shows as ArrayList<Entity>
     }
 

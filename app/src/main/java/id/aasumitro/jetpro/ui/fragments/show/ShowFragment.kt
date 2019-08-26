@@ -41,7 +41,6 @@ class ShowFragment : Fragment(), EntityListener {
         mRepository = Repository(activity)
         mViewModel = ViewModelProvider(activity as FragmentActivity)
                         .get(MainViewModel::class.java)
-        mViewModel.inject(mRepository)
         initRecyclerView()
     }
 
