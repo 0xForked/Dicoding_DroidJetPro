@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import id.aasumitro.jetpro.R
 import id.aasumitro.jetpro.data.Repository
-import id.aasumitro.jetpro.data.model.Entity
+import id.aasumitro.jetpro.data.models.Entity
 import id.aasumitro.jetpro.vm.MainViewModel
 import id.aasumitro.jetpro.ui.rv.EntityListener
 import kotlinx.android.synthetic.main.fragment_show.*
@@ -38,7 +38,8 @@ class ShowFragment : Fragment(), EntityListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mRepository = Repository(activity)
+
+        mRepository = Repository()
         mViewModel = ViewModelProvider(activity as FragmentActivity)
                         .get(MainViewModel::class.java)
         initRecyclerView()

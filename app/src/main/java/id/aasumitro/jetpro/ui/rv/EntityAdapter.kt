@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.aasumitro.jetpro.R
-import id.aasumitro.jetpro.data.model.Entity
-
+import id.aasumitro.jetpro.data.models.Entity
 
 /**
  * Created by A. A. Sumitro on 8/11/2019

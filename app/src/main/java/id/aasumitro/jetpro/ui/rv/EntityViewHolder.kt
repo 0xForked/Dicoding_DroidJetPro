@@ -4,11 +4,11 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
-import id.aasumitro.jetpro.data.model.Entity
+import id.aasumitro.jetpro.data.models.Entity
 import kotlinx.android.synthetic.main.item_list_holder.view.*
 import id.aasumitro.jetpro.R
-import id.aasumitro.jetpro.util.Constants.IMAGE_URL
-import id.aasumitro.jetpro.util.Constants.POSTER_SIZE
+import id.aasumitro.jetpro.data.sources.remote.ApiConst.IMAGE_URL
+import id.aasumitro.jetpro.data.sources.remote.ApiConst.POSTER_SIZE
 
 /**
  * Created by A. A. Sumitro on 8/11/2019

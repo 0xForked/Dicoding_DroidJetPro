@@ -1,9 +1,12 @@
 package id.aasumitro.jetpro
 
 import id.aasumitro.jetpro.data.Repository
+import id.aasumitro.jetpro.data.models.EntityResult
+import io.reactivex.observers.TestObserver
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.Assert.assertNotNull
+import org.junit.Before
+import org.mockito.Mock
 
 /**
  * Created by A. A. Sumitro on 19/08/19.
@@ -12,20 +15,39 @@ import org.junit.Assert.assertNotNull
  */
 class RepositoryTest {
 
-    private val mRepository = Repository()
+    @Mock
+    private lateinit var mRepository: Repository
+
+    @Before
+    @Throws(Exception::class)
+    fun setUp() {
+        mRepository = Repository()
+    }
 
     @Test
     fun test_get_movies() {
-        val movies = mRepository.getMovies()
-        assertNotNull(movies)
-        assertEquals(10, movies.size)
+        val result =
+            mRepository.getMovies()
+        val testObserver = TestObserver<EntityResult>()
+        result?.subscribe(testObserver)
+        testObserver.assertComplete()
+        testObserver.assertNoErrors()
+        testObserver.assertValueCount(1)
+        val listResult = testObserver.values()[0]
+        assertEquals(20, listResult.results?.size)
     }
 
     @Test
     fun test_get_shows() {
-        val shows = mRepository.getMovies()
-        assertNotNull(shows)
-        assertEquals(10, shows.size)
+        val result =
+            mRepository.getShows()
+        val testObserver = TestObserver<EntityResult>()
+        result?.subscribe(testObserver)
+        testObserver.assertComplete()
+        testObserver.assertNoErrors()
+        testObserver.assertValueCount(1)
+        val listResult = testObserver.values()[0]
+        assertEquals(20, listResult.results?.size)
     }
 
 }

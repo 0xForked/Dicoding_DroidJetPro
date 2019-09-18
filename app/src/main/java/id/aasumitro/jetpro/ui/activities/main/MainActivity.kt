@@ -7,7 +7,7 @@ import id.aasumitro.jetpro.R
 import id.aasumitro.jetpro.data.Repository
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.component_toolbar.*
-import id.aasumitro.jetpro.data.model.Entity
+import id.aasumitro.jetpro.data.models.Entity
 import androidx.lifecycle.Observer
 import id.aasumitro.jetpro.ui.fragments.detail.DetailFragment
 import id.aasumitro.jetpro.vm.MainViewModel
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         mViewPagerAdapter = MainViewPagerAdapter(supportFragmentManager, this)
         main_view_pager.adapter = mViewPagerAdapter
         main_tab_layout.setupWithViewPager(main_view_pager)
-        mRepository = Repository(this)
+        mRepository = Repository()
         mViewModel = ViewModelProvider(this)
             .get(MainViewModel::class.java)
         mViewModel.mSelectionListener.observe(this, loadDetail)

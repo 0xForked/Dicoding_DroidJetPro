@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.aasumitro.jetpro.data.Repository
-import id.aasumitro.jetpro.data.model.Entity
+import id.aasumitro.jetpro.data.models.Entity
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by A. A. Sumitro on 8/11/2019
@@ -20,6 +22,14 @@ class MainViewModel : ViewModel() {
     private var mListShows: MutableLiveData<ArrayList<Entity>>? = null
 
     val mSelectionListener = MutableLiveData<Entity>()
+
+    private var mMainNavigator: MainNavigator? = null
+
+    fun initVM(
+        navigator: MainNavigator
+    ) {
+        this.mMainNavigator = navigator
+    }
 
     fun movies() : LiveData<ArrayList<Entity>> {
         if (mListMovies == null) {
@@ -38,13 +48,33 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getMovies() {
-        val movies = mRepository.getMovies()
-        mListMovies?.value = movies as ArrayList<Entity>?
+        this.mMainNavigator?.onLoadData(true)
+        mRepository.let {
+            it.getMovies()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe({ onSuccess ->
+                    mListMovies?.value = onSuccess.results as ArrayList<Entity>
+                    this.mMainNavigator?.onLoadData(false)
+                }, { onError ->
+                    onError.printStackTrace()
+                    this.mMainNavigator?.onErrorCallback(onError.message as String)
+                })
+        }
     }
 
     private fun getShows() {
-        val shows = mRepository.getShows()
-        mListShows?.value = shows as ArrayList<Entity>
+        mRepository.let {
+            it.getShows()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe({ onSuccess ->
+                    mListShows?.value = onSuccess.results as ArrayList<Entity>
+                }, { onError ->
+                    onError.printStackTrace()
+                    this.mMainNavigator?.onErrorCallback(onError.message as String)
+                })
+        }
     }
 
 }

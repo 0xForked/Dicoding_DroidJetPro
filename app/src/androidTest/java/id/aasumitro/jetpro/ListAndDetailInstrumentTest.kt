@@ -37,6 +37,7 @@ class ListAndDetailInstrumentTest {
 
     @Test
     fun view_pager_test() {
+        SystemClock.sleep(1800)
         onView(withId(R.id.main_tab_layout)).check(matches(isDisplayed()))
         val shows = allOf(
             withText("TV SHOWS"),
@@ -46,86 +47,90 @@ class ListAndDetailInstrumentTest {
             withText("MOVIES"),
             isDescendantOfA(withId(R.id.main_tab_layout))
         )
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(shows).perform(click())
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(movies).perform(click())
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(shows).perform(click())
     } // passed
 
     @Test
     fun movies_list_data_count_test() {
+        SystemClock.sleep(1800)
         onView(withId(R.id.movie_recycler_view)).check(matches(isDisplayed()))
-        onView(withId(R.id.movie_recycler_view)).check(hasItemCount(10))
-        SystemClock.sleep(800)
+        onView(withId(R.id.movie_recycler_view)).check(hasItemCount(20))
+        SystemClock.sleep(1800)
     } // passed
 
     @Test
     fun movie_detail_test() {
-        onView(withId(R.id.movie_recycler_view)).check(hasItemCount(10))
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
+        onView(withId(R.id.movie_recycler_view)).check(hasItemCount(20))
+        SystemClock.sleep(1800)
         onView(withId(R.id.movie_recycler_view))
             .check(matches(isDisplayed()))
             .perform(
             RecyclerViewActions
                 .actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         pressBack()
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(withId(R.id.movie_recycler_view))
             .check(matches(isDisplayed()))
             .perform(ViewActions.swipeUp())
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(withId(R.id.movie_recycler_view))
             .check(matches(isDisplayed()))
             .perform(
                 RecyclerViewActions
                     .actionOnItemAtPosition<RecyclerView.ViewHolder>(9, click()))
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
     } // passed
 
     @Test
     fun shows_list_data_count_test() {
+        SystemClock.sleep(1800)
         onView(withId(R.id.main_tab_layout)).check(matches(isDisplayed()))
         val shows = allOf(
             withText("TV SHOWS"),
             isDescendantOfA(withId(R.id.main_tab_layout))
         )
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(shows).perform(click())
         onView(withId(R.id.show_recycler_view)).check(matches(isDisplayed()))
-        onView(withId(R.id.show_recycler_view)).check(hasItemCount(10))
+        onView(withId(R.id.show_recycler_view)).check(hasItemCount(20))
     } // passed
 
     @Test
     fun show_detail_test() {
+        SystemClock.sleep(1800)
         val shows = allOf(
             withText("TV SHOWS"),
             isDescendantOfA(withId(R.id.main_tab_layout))
         )
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(shows).perform(click())
         onView(withId(R.id.show_recycler_view)).check(matches(isDisplayed()))
-        SystemClock.sleep(800)
-        onView(withId(R.id.show_recycler_view)).check(hasItemCount(10))
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
+        onView(withId(R.id.show_recycler_view)).check(hasItemCount(20))
+        SystemClock.sleep(1800)
         onView(withId(R.id.show_recycler_view))
             .check(matches(isDisplayed()))
             .perform(
                 RecyclerViewActions
                     .actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         pressBack()
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(withId(R.id.show_recycler_view))
             .check(matches(isDisplayed()))
             .perform(ViewActions.swipeUp())
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
         onView(withId(R.id.show_recycler_view))
             .check(matches(isDisplayed()))
             .perform(
                 RecyclerViewActions
                     .actionOnItemAtPosition<RecyclerView.ViewHolder>(9, click()))
-        SystemClock.sleep(800)
+        SystemClock.sleep(1800)
 
     } // passed
 

@@ -11,4 +11,6 @@
     <color name="colorBackgroundPrimary">#F7F7F7</color>
     <color name="colorBackgroundSecondary">#FFFFFF</color>
 
+    <color name="colorTextPrimary">#101010</color>
+    <color name="colorTextLight">#FFF</color>
 </resources>
