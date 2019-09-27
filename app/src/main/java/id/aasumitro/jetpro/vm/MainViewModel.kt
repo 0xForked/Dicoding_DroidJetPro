@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.aasumitro.jetpro.data.Repository
 import id.aasumitro.jetpro.data.models.Entity
+import id.aasumitro.jetpro.utils.EspressoIdlingResource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -48,6 +49,7 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getMovies() {
+        EspressoIdlingResource.increment()
         this.mMainNavigator?.onLoadData(true)
         mRepository.let {
             it.getMovies()
@@ -56,23 +58,36 @@ class MainViewModel : ViewModel() {
                 ?.subscribe({ onSuccess ->
                     mListMovies?.value = onSuccess.results as ArrayList<Entity>
                     this.mMainNavigator?.onLoadData(false)
+                    if (!EspressoIdlingResource.espressoIdlingResourceForMainActivity.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }, { onError ->
                     onError.printStackTrace()
                     this.mMainNavigator?.onErrorCallback(onError.message as String)
+                    if (!EspressoIdlingResource.espressoIdlingResourceForMainActivity.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 })
         }
     }
 
     private fun getShows() {
+        EspressoIdlingResource.increment()
         mRepository.let {
             it.getShows()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribe({ onSuccess ->
                     mListShows?.value = onSuccess.results as ArrayList<Entity>
+                    if (!EspressoIdlingResource.espressoIdlingResourceForMainActivity.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }, { onError ->
                     onError.printStackTrace()
                     this.mMainNavigator?.onErrorCallback(onError.message as String)
+                    if (!EspressoIdlingResource.espressoIdlingResourceForMainActivity.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 })
         }
     }
